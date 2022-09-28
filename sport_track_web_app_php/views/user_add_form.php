@@ -1,0 +1,33 @@
+<?php include __ROOT__."/views/header.html"; ?>
+
+<form style="margin-left: 150px;" action="/user_add" method="post">
+            <label for="nom">Nom:</label><br>
+            <input type="text" id="nom" name="nom"><br><br>
+
+            <label for="prenom">Prenom:</label><br>
+            <input type="text" id="prenom" name="prenom"><br><br>
+
+            <label for="dateN">Date de naissance</label><br>
+            <input type="date" id="dateN" name="dateN"><br><br>
+
+            <input type="radio" id="homme" name="sexe" value="Homme">
+            <label for="homme">Homme</label><br>
+            <input type="radio" id="femme" name="sexe" value="Femme">
+            <label for="femme">Femme</label><br><br>
+
+            <label for="taille">taille:</label><br>
+            <input type="text" id="taille" name="taille" pattern="[0-9]{2,3}"> cm<br><br>
+
+            <label for="poids">poids:</label><br>
+            <input type="text" id="poids" name="poids" pattern="[0-9]{2,3}"> kg<br><br><br>
+
+            <label for="email">email:</label><br>
+            <input type="text" id="email" name="email"><br><br>
+
+            <label for="mdp">Mot de passe: <br>-8 caractères composés <br>-1 chiffre <br>-1 lettre majuscule <br>-1 lettre minuscule</label><br>
+            <input type="password" id="mdp" name="mdp" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="-8 caractères composés -1 chiffre -1 lettre majuscule -1 lettre minuscule"><br><br>
+
+            <input type="submit" value="valider" >
+          </form>
+
+<?php include __ROOT__."/views/footer.html"; ?>

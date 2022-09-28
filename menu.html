@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Formulaire SportTrack</title>
+
+    </head>
+    <body style="background-color : #58aed6;">
+        <a href="index.html">retour</a>
+        <h1 style="margin-left: 125px;">Modification du compte</h1>
+        <form style="margin-left: 150px;">
+            <label for="nom">Nom:</label><br>
+            <input type="text" id="nom" name="nom" disabled="disabled"><br><br>
+
+            <label for="prenom">Prenom:</label><br>
+            <input type="text" id="prenom" name="prenom" disabled="disabled"><br><br>
+
+            <label for="dateN">Date de naissance</label><br>
+            <input type="date" id="dateN" name="dateN" disabled="disabled"><br><br>
+
+            <input type="radio" id="homme" name="sexe" value="Homme">
+            <label for="homme">Homme</label><br>
+            <input type="radio" id="femme" name="sexe" value="Femme">
+            <label for="femme">Femme</label><br><br>
+
+            <label for="taille">taille:</label><br>
+            <input type="text" id="taille" name="taille" pattern="[0-9]{3}"> cm<br><br>
+
+            <label for="poids">poids:</label><br>
+            <input type="text" id="poids" name="poids"> kg<br><br><br>
+
+            <label for="email">email:</label><br>
+            <input type="text" id="email" name="email" disabled="disabled"><br><br>
+
+            <label for="mdp">Mot de passe: </label><br>
+            <input type="password" id="mdp" name="mdp" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="-8 caractères composés -1 chiffre -1 lettre majuscule -1 lettre minuscule"><br><br>
+
+            <input type="submit" value="valider" style="background-color: #66ff00;">
+          </form>
+
+    </body>
+</html>
