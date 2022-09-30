@@ -10,10 +10,12 @@
             <label for="dateN">Date de naissance</label><br>
             <input type="date" id="dateN" name="dateN"><br><br>
 
-            <input type="radio" id="homme" name="sexe" value="Homme">
-            <label for="homme">Homme</label><br>
-            <input type="radio" id="femme" name="sexe" value="Femme">
-            <label for="femme">Femme</label><br><br>
+            <input type="radio"  name="sexe" value="Homme">
+            <label for="sexe">Homme</label><br>
+            <input type="radio"  name="sexe" value="Femme">
+            <label for="sexe">Femme</label><br>
+            <input type="radio"  name="sexe" value="Femme">
+            <label for="sexe">Autre</label><br><br>
 
             <label for="taille">taille:</label><br>
             <input type="text" id="taille" name="taille" pattern="[0-9]{2,3}"> cm<br><br>
