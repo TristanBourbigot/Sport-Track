@@ -9,9 +9,9 @@
 
         public function __construct(){}
 
-        public function init(int $idActivity, int $theUser, String $description, String $date){
+        public function init(int $theUser, String $description, String $date){
 
-            $this->idActivity = $idActivity;
+            $this->idActivity = -1;
             $this->theUser = $theUser;
             $this->description = $description;
             $this->date = $date;
@@ -24,9 +24,21 @@
 
         }
 
+        public function setIdActivity(int $idActivity):void{
+
+            $this->idActivity = $idActivity;
+
+        }
+
         public function getTheUser():int{
 
             return $this->theUser;
+
+        }
+
+        public function setTheUser(int $theUser):void{
+
+            $this->theUser = $theUser;
 
         }
 
@@ -36,9 +48,28 @@
 
         }
 
+        public function setDescription(String $description):void{
+
+            $this->description = $description;
+
+        }
+
         public function getDate():String{
 
             return $this->date;
+
+        }
+
+        public function setDate(String $date):void{
+
+            $this->date = $date;
+
+        }
+
+        public function __toString()
+        {
+            
+            return "Activity [idActivity=" . $this->idActivity . ", theUser=" . $this->theUser . ", description=" . $this->description . ", date=" . $this->date . "]";
 
         }
 

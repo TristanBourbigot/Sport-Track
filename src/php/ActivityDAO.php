@@ -1,5 +1,10 @@
 <?php
 require_once('SqliteConnection.php');
+require_once('Activity.php');
+require_once('ActivityEntryDAO.php');
+require_once('Data.php');
+require_once('User.php');
+
 class ActivityDAO {
     private static ActivityDAO $dao;
 
@@ -16,8 +21,31 @@ class ActivityDAO {
         $dbc = SqliteConnection::getInstance()->getConnection();
         $query = "select * from Activity order by idActivity";
         $stmt = $dbc->query($query);
-        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'User');
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Activity');
         return $results;
+    }
+
+    public final function findAllSpecific(int $idUser): Array{
+
+        $dbc = SqliteConnection::getInstance()->getConnection();
+        $query = "SELECT * FROM Activity WHERE theUser = :i ORDER BY idActivity";
+
+        $dbc = SqliteConnection::getInstance()->getConnection();
+            try{
+                
+                $stmt = $dbc->prepare($query);
+
+                $stmt->bindValue(':i',$idUser,PDO::PARAM_STR);
+
+                $stmt = $dbc->query($query);
+
+            }catch(Exception $e){
+                echo('Erreur : '.$e->getMessage());
+            }
+       
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Activity');
+        return $results;
+
     }
 
     public final function insert(Activity $st): void{
@@ -36,6 +64,9 @@ class ActivityDAO {
 
             // execute the prepared statement
             $stmt->execute();
+
+            $lastId = $dbc->lastInsertId();
+            $st->setIdActivity($lastId);
         }
     }
 

@@ -1,5 +1,9 @@
 <?php
 require_once('SqliteConnection.php');
+require_once('Activity.php');
+require_once('Data.php');
+require_once('User.php');
+
 class ActivityEntryDAO {
     private static ActivityEntryDAO $dao;
 
@@ -14,9 +18,9 @@ class ActivityEntryDAO {
 
     public final function findAll(): Array{
         $dbc = SqliteConnection::getInstance()->getConnection();
-        $query = "select * from Data order by id";
+        $query = "select * from Data order by idData";
         $stmt = $dbc->query($query);
-        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'User');
+        $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'Data');
         return $results;
     }
 
@@ -25,20 +29,33 @@ class ActivityEntryDAO {
             $dbc = SqliteConnection::getInstance()->getConnection();
             // prepare the SQL statement
             $query = "insert into Data(theActivity, hour,cardioFrequency,lattitude,longitude,altitude) values (:idAct,:time,:card,:lat,:long,:alt)";
-            $stmt = $dbc->prepare($query);
 
-            // bind the paramaters
-            $stmt->bindValue(':idAct',$st->getTheActivity(),PDO::PARAM_STR);
-            $stmt->bindValue(':time',$st->getTime(),PDO::PARAM_STR);
-            $stmt->bindValue(':card',$st->getCardioFrequency(),PDO::PARAM_STR);
-            $stmt->bindValue(':lat',$st->getLattitude(),PDO::PARAM_STR);
-            $stmt->bindValue(':long',$st->getLongitude(),PDO::PARAM_STR);
-            $stmt->bindValue(':alt',$st->getAltitude(),PDO::PARAM_STR);
-            
-            
+            try{
 
-            // execute the prepared statement
-            $stmt->execute();
+                $stmt = $dbc->prepare($query);
+
+                // bind the paramaters
+                $stmt->bindValue(':idAct',$st->getTheActivity(),PDO::PARAM_STR);
+                $stmt->bindValue(':time',$st->getTime(),PDO::PARAM_STR);
+                $stmt->bindValue(':card',$st->getCardioFrequency(),PDO::PARAM_STR);
+                $stmt->bindValue(':lat',$st->getLattitude(),PDO::PARAM_STR);
+                $stmt->bindValue(':long',$st->getLongitude(),PDO::PARAM_STR);
+                $stmt->bindValue(':alt',$st->getAltitude(),PDO::PARAM_STR);
+                
+
+                // execute the prepared statement
+                $stmt->execute();
+
+                $lastId = $dbc->lastInsertId();
+                $st->setIdData($lastId);
+
+            }catch(Exception $e){
+
+                echo('Erreur : '.$e->getMessage());
+
+            }
+
+            
         }
     }
 
@@ -64,7 +81,7 @@ class ActivityEntryDAO {
 
             // bind the paramaters
             $stmt->bindValue(':id',$obj->getIdData(),PDO::PARAM_STR);
-            $stmt->bindValue(':Act',$obj->getTheActivity(),PDO::PARAM_STR);
+            $stmt->bindValue(':act',$obj->getTheActivity(),PDO::PARAM_STR);
             $stmt->bindValue(':time',$obj->getTime(),PDO::PARAM_STR);
             $stmt->bindValue(':card',$obj->getCardioFrequency(),PDO::PARAM_STR);
             $stmt->bindValue(':lat',$obj->getLattitude(),PDO::PARAM_STR);

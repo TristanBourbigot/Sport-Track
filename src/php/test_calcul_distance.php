@@ -1,4 +1,5 @@
 <?php
+
 require_once 'CalculDistanceImpl.php';
 
 $test = new  CalculDistanceImpl();

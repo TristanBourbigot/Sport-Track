@@ -1,6 +1,6 @@
 <?php
 
-require_once 'CalculDistance.php';
+require_once("CalculDistance.php");
 
 class CalculDistanceImpl implements CalculDistance{
 
@@ -13,12 +13,14 @@ class CalculDistanceImpl implements CalculDistance{
      * @return float La distance entre les deux points GPS
      */
     public function calculDistance2PointsGPS(float $lat1, float $long1, float $lat2, float $long2): float{
+
         $lat1  = pi()*($lat1)/180;
         $lat2  = pi()*($lat2)/180;
         $long1  = pi()*($long1)/180;
         $long2  = pi()*($long2)/180;
 
         return 6378.137 * acos(sin($lat2)*sin($lat1)+cos($lat2)*cos($lat1)*cos($long2-$long1));
+
     }
 
 
@@ -33,11 +35,15 @@ class CalculDistanceImpl implements CalculDistance{
 
         $i=0;
         while($i<sizeof($parcours)-1){
+
             $ret = $ret + $this->calculDistance2PointsGPS($parcours[$i]["latitude"],$parcours[$i]["longitude"],$parcours[$i+1]["latitude"],$parcours[$i+1]["longitude"]);
             $i++;
+
         }
 
         return $ret;
+
     }
+
 }
 ?>
