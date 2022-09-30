@@ -28,11 +28,23 @@ class Calculdistance {
      * @returns la distance parcourue en km lors de l'activité
      */
     CalculdistanceTrajet($activite) {
-        $ret=0;
+        var $ret=0;
 
-        for ($i = 0; $i < $activite.length - 1; $i++) {
+        for (var $i = 0; $i < $activite.length - 1; $i++) {
             $ret += this.calculDistance2PointsGPS($activite[$i].latitude, $activite[$i].longitude, $activite[$i + 1].latitude, $activite[$i + 1].longitude);
         }
         return $ret;
     }
 }
+
+var activite = [
+    {"time":"13:00:00","cardio_frequency":99,"latitude":47.644795,"longitude":-2.776605,"altitude":18},
+    {"time":"13:00:05","cardio_frequency":100,"latitude":47.646870,"longitude":-2.778911,"altitude":18},
+    {"time":"13:00:10","cardio_frequency":102,"latitude":47.646197,"longitude":-2.780220,"altitude":18},
+    {"time":"13:00:15","cardio_frequency":100,"latitude":47.646992,"longitude":-2.781068,"altitude":17},
+    {"time":"13:00:20","cardio_frequency":98,"latitude":47.647867,"longitude":-2.781744,"altitude":16},
+    {"time":"13:00:25","cardio_frequency":103,"latitude":47.648510,"longitude":-2.780145,"altitude":16}
+  ]
+
+var calcul = new Calculdistance();
+console.log(calcul.CalculdistanceTrajet(activite));
