@@ -1,5 +1,6 @@
 <?php include __ROOT__."/views/header.html"; ?>
 
+<h3>Connection</h3>
 <form action="/connect" method="post">
   <label>Email :</label><br>
   <input type="text" name="email" required><br>
