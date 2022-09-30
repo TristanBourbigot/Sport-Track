@@ -1,5 +1,9 @@
 <?php
 require_once('SqliteConnection.php');
+require_once('User.php');
+require_once('ActivityDAO.php');
+require_once('Activity.php');
+
 class UtilisateurDAO {
     private static UtilisateurDAO $dao;
 
@@ -14,7 +18,7 @@ class UtilisateurDAO {
 
     public final function findAll(): Array{
         $dbc = SqliteConnection::getInstance()->getConnection();
-        $query = "select * from students order by nom,prenom";
+        $query = "select * from User order by first_name, name";
         $stmt = $dbc->query($query);
         $results = $stmt->fetchALL(PDO::FETCH_CLASS, 'User');
         return $results;
@@ -24,7 +28,7 @@ class UtilisateurDAO {
         if($st instanceof User){
             $dbc = SqliteConnection::getInstance()->getConnection();
             // prepare the SQL statement
-            $query = "insert into User(name, firstname, birthdate, gender, height, weight, email, password) values (:n,:f,:b,:g,:h,:w,:e,:p)";
+            $query = "insert into User(name, first_name, birthdate, gender, height, weight, email, password) values (:n,:f,:b,:g,:h,:w,:e,:p)";
             $stmt = $dbc->prepare($query);
 
             // bind the paramaters
@@ -37,9 +41,11 @@ class UtilisateurDAO {
             $stmt->bindValue(':e',$st->getEmail(),PDO::PARAM_STR);
             $stmt->bindValue(':p',$st->getPassword(),PDO::PARAM_STR);
             
-
             // execute the prepared statement
             $stmt->execute();
+
+            $lastId = $dbc->lastInsertId();
+            $st->setId($lastId);
         }
     }
 
@@ -47,36 +53,64 @@ class UtilisateurDAO {
         if($obj instanceof User){
             $dbc = SqliteConnection::getInstance()->getConnection();
             // prepare the SQL statement
-            $query = "DELETE INTO FROM USER WHERE id = :i";
-            $stmt = $dbc->prepare($query);
+            
+            $activities = ActivityDAO::getInstance();
+            $userActivities = $activities->findAllSpecific($obj->getId());
+            $nbSpecificActivities = count($userActivities);
 
-            $stmt->bindValue(':i',$obj->getIdUser(),PDO::PARAM_STR);
+            for($i = 0; $i < $nbSpecificActivities; $i++){
 
-            $stmt->execute();
+                $activities -> delete($userActivities[$i]);
+
+            }
+
+
+            $query = "DELETE FROM User WHERE id = :i";
+            try{
+                
+                $stmt = $dbc->prepare($query);
+
+                $stmt->bindValue(':i',$obj->getId(),PDO::PARAM_STR);
+
+                $stmt->execute();
+
+            }catch(Exception $e){
+                echo('Erreur : '.$e->getMessage());
+            }
+            
         }
     }
 
     public function update(User $obj): void {
         if($obj instanceof User){
             $dbc = SqliteConnection::getInstance()->getConnection();
+
             // prepare the SQL statement
-            $query = "UPDATE User SET name=:n, firstname=:f, birthdate=:b, gender=:g, height=:h, weight=:w, email=:e, password=:p WERE id=:i";
-            $stmt = $dbc->prepare($query);
-
-            // bind the paramaters
-            $stmt->bindValue(':i',$obj->getIdUser(),PDO::PARAM_STR);
-            $stmt->bindValue(':n',$obj->getName(),PDO::PARAM_STR);
-            $stmt->bindValue(':f',$obj->getFirstName(),PDO::PARAM_STR);
-            $stmt->bindValue(':b',$obj->getBirthdate(),PDO::PARAM_STR);
-            $stmt->bindValue(':g',$obj->getGender(),PDO::PARAM_STR);
-            $stmt->bindValue(':h',$obj->getHeight(),PDO::PARAM_STR);
-            $stmt->bindValue(':w',$obj->getWeight(),PDO::PARAM_STR);
-            $stmt->bindValue(':e',$obj->getEmail(),PDO::PARAM_STR);
-            $stmt->bindValue(':p',$obj->getPassword(),PDO::PARAM_STR);
+            $query = "UPDATE User SET name=:n, first_name=:f, birthdate=:b, gender=:g, height=:h, weight=:w, email=:e, password=:p WHERE id=:i";
             
+            try {
+                
+                $stmt = $dbc->prepare($query);
 
-            // execute the prepared statement
-            $stmt->execute();
+                // bind the paramaters
+                $stmt->bindValue(':i',$obj->getId(),PDO::PARAM_STR);
+                $stmt->bindValue(':n',$obj->getName(),PDO::PARAM_STR);
+                $stmt->bindValue(':f',$obj->getFirstName(),PDO::PARAM_STR);
+                $stmt->bindValue(':b',$obj->getBirthdate(),PDO::PARAM_STR);
+                $stmt->bindValue(':g',$obj->getGender(),PDO::PARAM_STR);
+                $stmt->bindValue(':h',$obj->getHeight(),PDO::PARAM_STR);
+                $stmt->bindValue(':w',$obj->getWeight(),PDO::PARAM_STR);
+                $stmt->bindValue(':e',$obj->getEmail(),PDO::PARAM_STR);
+                $stmt->bindValue(':p',$obj->getPassword(),PDO::PARAM_STR);
+                
+
+                // execute the prepared statement
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                echo('Erreur : '.$e->getMessage());
+            }
+            
         }
     }
 }

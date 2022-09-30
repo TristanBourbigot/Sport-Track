@@ -17,5 +17,7 @@ interface CalculDistance {
      * @return float La distance du parcours
      */
     public function calculDistanceTrajet(Array $parcours): float;
-}
+    
+    }
+
 ?>

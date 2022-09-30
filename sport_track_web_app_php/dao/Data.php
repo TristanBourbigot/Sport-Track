@@ -4,7 +4,7 @@
 
         private int $idData;
         private int $theActivity;
-        private String $time;
+        private string $hour;
         private int $cardioFrequency;
         private float $lattitude;
         private float $longitude;
@@ -12,11 +12,11 @@
 
         public function __construct(){}
 
-        public function init(int $theActivity, String $time, int $cardioFrequency, float $lattitude, float $longitude, float $altitude){
+        public function init(int $theActivity, string $hour, int $cardioFrequency, float $lattitude, float $longitude, float $altitude){
 
             $this->idData = -1;
             $this->theActivity = $theActivity;
-            $this->time = $time;
+            $this->hour = $hour;
             $this->cardioFrequency = $cardioFrequency;
             $this->lattitude = $lattitude;
             $this->longitude = $longitude;
@@ -41,11 +41,11 @@
         }
 
         public function getTime(): String{
-            return $this->time;
+            return $this->hour;
         }
 
-        public function setTime(String $time): void{
-            $this->time = $time;
+        public function setTime(String $hour): void{
+            $this->hour = $hour;
         }
 
         public function getCardioFrequency(): int{
@@ -83,7 +83,7 @@
         public function __toString()
         {
             
-            return "Data [idData=" . $this->idData . ", theActivity=" . $this->theActivity . ", time=" . $this->time . ", cardioFrequency=" . $this->cardioFrequency . ", lattitude=" . $this->lattitude . ", longitude=" . $this->longitude . ", altitude=" . $this->altitude . "]";
+            return "Data [idData=" . $this->idData . ", theActivity=" . $this->theActivity . ", time=" . $this->hour . ", cardioFrequency=" . $this->cardioFrequency . ", lattitude=" . $this->lattitude . ", longitude=" . $this->longitude . ", altitude=" . $this->altitude . "]";
         
         }
 

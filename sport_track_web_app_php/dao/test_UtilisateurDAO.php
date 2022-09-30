@@ -3,7 +3,6 @@
 require_once 'UtilisateurDAO.php';
 require_once 'User.php';
 
-$pdo = SqliteConnection::getInstance()->getConnection();
 $test = UtilisateurDAO::getInstance();
 $user1 = new User();
 $user1->init('LE ROUX', 'Erwan', '2002-07-18', 'HOMME', 169, 63, 'erwan@gwellan.net', 'password');
@@ -15,6 +14,12 @@ $user1->init('LE ROUX', 'Erwan', '2002-07-18', 'HOMME', 169, 63, 'erwan@gwellan.
     echo $resultLgth;
     echo "\n";
 
+    $user1->setFirstName('Toto');
+
+    $test->update($user1);
+    $result = $test->findAll();
+    $resultLgth = count($result);
+
     for($i = 0; $i < $resultLgth; $i++){
 
         echo $result[$i];
@@ -22,7 +27,7 @@ $user1->init('LE ROUX', 'Erwan', '2002-07-18', 'HOMME', 169, 63, 'erwan@gwellan.
 
     }
 
-    $test->delete($user1);
+    //$test->delete($user1);
 
     $result = $test->findAll();
     $resultLgth = count($result);
