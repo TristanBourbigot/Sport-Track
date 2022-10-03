@@ -20,14 +20,14 @@ class ConnectController extends Controller{
             $this->render('user_connect_valid',['error' => 'connecté', "user" => $results[0]]);
 
             $_SESSION['idUser'] = $results[0];
-            $_SESSION['nom'] = $results[0]->getNom();
-            $_SESSION['prenom'] = $results[0]->getPrenom();
-            $_SESSION['dateN'] = $results[0]->getDateN();
-            $_SESSION['sexe'] = $results[0]->getSexe();
-            $_SESSION['taille'] = $results[0]->getTaille();
-            $_SESSION['poids'] = $results[0]->getPoids();
+            $_SESSION['nom'] = $results[0]->getName();
+            $_SESSION['prenom'] = $results[0]->getFirstName();
+            $_SESSION['dateN'] = $results[0]->getBirthdate();
+            $_SESSION['sexe'] = $results[0]->getGender();
+            $_SESSION['taille'] = $results[0]->getHeight();
+            $_SESSION['poids'] = $results[0]->getWeight();
             $_SESSION['email'] = $results[0]->getEmail();
-            $_SESSION['mdp'] = $results[0]->getMdp();
+            $_SESSION['mdp'] = $results[0]->getPassword();
 
         }else{
             $this->render('user_connect_valid',['error' => 'Email ou mot de passe incorrect', "user" => null]);
