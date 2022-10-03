@@ -5,7 +5,7 @@ require( __ROOT__."/dao/User.php");
 require( __ROOT__."/dao/UtilisateurDAO.php"); 
 
 class AddUserController extends Controller{
-
+   
     public function get($request){
         $this->render('user_add_form',[]);
     }

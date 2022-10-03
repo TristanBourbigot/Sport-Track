@@ -8,8 +8,7 @@
         private function __construct(){
 
             try{
-
-                $this->pdo = new PDO('sqlite:../bd/sport_track.db');
+                $this->pdo = new PDO('sqlite:'.BD_DIR.'/sport_track.db');
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             }catch(Exception $e){
