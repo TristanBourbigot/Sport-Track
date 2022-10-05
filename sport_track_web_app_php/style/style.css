@@ -1,10 +1,13 @@
-/*
-HEADER
-*/
 body {
     margin: 0;
     padding: 0;
+    overflow-y: hidden;
  }  
+
+/*
+HEADER
+*/
+
 
 .header {
     width: 100%;
@@ -12,13 +15,14 @@ body {
     margin-right: 0px;
     height: 70px;
     line-height: 70px;
-    background-color: #505050;
+    background-color: #6d6d6d;
     top: 0px;
     z-index: 999;
 }
 
 .header .logo {
-    color: #000000;
+    color: #ffffff;
+    opacity: 1;
     font-size: 30px;
     font-family: 'Josefin Sans', sans-serif;
     margin-right: 40px;
@@ -27,6 +31,7 @@ body {
 }
 
 .header .header-menu{
+    opacity: 1;
     float: right;
     margin-right: 5%;
     
@@ -34,11 +39,61 @@ body {
 
 .header .header-menu a{
     color: #ffffff;
+    opacity: 1;
     font-size: 20px;
     font-family: 'Josefin Sans', sans-serif;
     margin-right: 40px;
     text-decoration: none;
 }
 .header .header-menu a:hover{
+    opacity: 1;
     color:#101010;
+}
+
+
+.banner .imgBack{
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    right: 0%; 
+}
+
+.banner .banner-content{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40%;
+}
+
+.banner .banner-content .banner-text{
+    color: #000000;
+    font-size: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 20px;
+    z-index: 3;
+}
+
+.banner .banner-content h1{
+    font-size: 70px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #000000;
+    z-index: 3;
+}
+
+.banner .back{
+    background-position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20%;
+    width: 40%;
+    height: 35%;
+    background-color: #ffffff;
+    opacity: 0.5;
+    border-radius: 60px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px;
+    top: 0%;
+    left: 0%;
+    z-index: 0;
 }
