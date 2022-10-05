@@ -4,7 +4,8 @@ var UserDAO = function(){
     this.insert = function(values, callback){
         var sql = "insert into User(name, first_name, birthdate, gender, height, weight, email, password) values (?,?,?,?,?,?,?,?)";
         db.run(sql, values, callback);
-
+        db.close();
+        return callback;
     };
 
     this.update = function(key, values, callback){
