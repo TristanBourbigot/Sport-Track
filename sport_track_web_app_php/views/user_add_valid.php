@@ -1,4 +1,10 @@
-<?php include __ROOT__."/views/header.html"; 
+<?php 
+
+if(isset($_SESSION)){
+    include __ROOT__."/views/headerConnect.html";
+}else{
+    include __ROOT__."/views/header.html"; 
+}   
       
 echo "Nom : ".$data['nom']."<br>";
 echo "Prenom : ".$data['prenom']."<br>";

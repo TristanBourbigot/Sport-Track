@@ -17,8 +17,7 @@ class ConnectController extends Controller{
         $stmt->execute([$request['email'],$request['mdp']]);
         $results = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
         if(count($results) == 1){
-            $this->render('user_connect_valid',['error' => 'connecté', "user" => $results[0]]);
-
+            session_start();
             $_SESSION['idUser'] = $results[0];
             $_SESSION['nom'] = $results[0]->getName();
             $_SESSION['prenom'] = $results[0]->getFirstName();
@@ -28,7 +27,9 @@ class ConnectController extends Controller{
             $_SESSION['poids'] = $results[0]->getWeight();
             $_SESSION['email'] = $results[0]->getEmail();
             $_SESSION['mdp'] = $results[0]->getPassword();
+            $this->render('user_connect_valid',['error' => 'connecté', "user" => $results[0]]);
 
+            
         }else{
             $this->render('user_connect_valid',['error' => 'Email ou mot de passe incorrect', "user" => null]);
         }
