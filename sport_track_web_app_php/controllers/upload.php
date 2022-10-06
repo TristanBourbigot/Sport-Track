@@ -1,11 +1,11 @@
 <?php
 require(__ROOT__.'/controllers/Controller.php');
-require_once (__ROOT__.'/model/User.php');
-require_once (__ROOT__.'/model/Activities.php');
-require_once (__ROOT__.'/model/Data.php');
-require_once (__ROOT__.'/model/ActivityDAO.php');
-require_once (__ROOT__.'/model/ActivityEntryDAO.php');
-require_once (__ROOT__.'/controllers/CalculDistanceImpl.php');
+require(__ROOT__.'/dao/User.php');
+require(__ROOT__.'/dao/Activity.php');
+require(__ROOT__.'/dao/Data.php');
+require(__ROOT__.'/dao/ActivityDAO.php');
+require_once(__ROOT__.'/dao/ActivityEntryDAO.php');
+require(__ROOT__.'/dao/CalculDistanceImpl.php');
 
 
 class UploadActivityController extends Controller{
@@ -149,7 +149,7 @@ class UploadActivityController extends Controller{
         $this->dataArray = array();
 
     }
-    
+
 }
 
 ?>
