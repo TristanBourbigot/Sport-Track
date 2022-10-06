@@ -2,7 +2,7 @@
 require(__ROOT__.'/controllers/Controller.php');
 require(__ROOT__.'/dao/SqliteConnection.php');
 require( __ROOT__."/dao/User.php"); 
-require( __ROOT__."/dao/UtilisateurDAO.php"); 
+require( __ROOT__."/dao/UtilisateurDAO.php");
 
 class AddUserController extends Controller{
    
@@ -11,8 +11,6 @@ class AddUserController extends Controller{
     }
 
     public function post($request){
-        
-
      
         $insertUser = UtilisateurDAO::getInstance();
         $user = new User();
