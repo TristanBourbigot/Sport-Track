@@ -1,4 +1,4 @@
-var db = require('./sqlite_connection');
+var db = require('./sport-track-db/sqlite_connection');
 var UserDAO = function(){
 
     this.insert = function(values, callback){
