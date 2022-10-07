@@ -5,7 +5,6 @@ var UserDAO = function(){
         var sql = "insert into User(name, first_name, birthdate, gender, height, weight, email, password) values (?,?,?,?,?,?,?,?)";
         db.run(sql, values, callback);
         db.close();
-        return callback;
     };
 
     this.update = function(key, values, callback){
@@ -13,28 +12,26 @@ var UserDAO = function(){
         values.push(key);
         db.run(sql, values, callback);
         db.close();
-        return callback;
     };
 
     this.delete = function(key, callback){
         var sql = "DELETE FROM User WHERE id=?";
         db.run(sql, key, callback);
         db.close();
-        return callback;
     };
 
     this.findAll = function(callback){
         var sql = "SELECT * FROM User ORDER BY id";
-        db.run(sql, callback);
+        var ret= db.run(sql, callback);
         db.close();
-        return callback;
+        return ret;
     };
 
     this.findByKey = function(key, callback){
         var sql = "SELECT * FROM User WHERE id=?";
-        db.run(sql, key, callback);
+        var ret = db.run(sql, key, callback);
         db.close();
-        return callback;
+        return ret;
     };
 };
 var dao = new UserDAO();
