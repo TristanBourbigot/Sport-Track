@@ -6,8 +6,6 @@ var ActivityDAO = function(){
 
         var sql = "insert into Activity(name, description, date, distance, duration, user_id) values (?,?,?,?,?,?)";
         db.run(sql, values, callback);
-        db.close();
-        return callback;
 
     }
 
@@ -16,8 +14,6 @@ var ActivityDAO = function(){
         var sql = "UPDATE Activity SET name=?, description=?, date=?, distance=?, duration=?, user_id=? WHERE id=?";
         values.push(key);
         db.run(sql, values, callback);
-        db.close();
-        return callback;
 
     }
 
@@ -25,8 +21,6 @@ var ActivityDAO = function(){
             
         var sql = "DELETE FROM Activity WHERE id=?";
         db.run(sql, key, callback);
-        db.close();
-        return callback;
 
     }
     
@@ -34,8 +28,6 @@ var ActivityDAO = function(){
             
         var sql = "SELECT * FROM Activity ORDER BY id";
         db.run(sql, callback);
-        db.close();
-        return callback;
 
     }
 
