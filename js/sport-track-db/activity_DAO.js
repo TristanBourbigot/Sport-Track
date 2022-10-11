@@ -1,4 +1,4 @@
-var db = require('./sport-track-db/sqlite_connection');
+var db = require('./sqlite_connection');
 var usr = require('./user_DAO');
 var ActivityDAO = function(){
 
@@ -30,6 +30,13 @@ var ActivityDAO = function(){
         db.run(sql, callback);
 
     }
+
+    this.findByKey = function(key, callback){
+
+        var sql = "SELECT * FROM Activity WHERE id=?";
+        db.all(sql, key, callback);
+
+    };
 
 }
 var dao = new ActivityDAO();
