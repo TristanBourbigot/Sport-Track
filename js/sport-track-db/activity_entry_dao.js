@@ -2,7 +2,7 @@ var db = require('./sqlite_connection');
 var ActivityEntryDAO  = function(){
 
     this.insert = function(values, callback){
-        var sql = "insert into Data(theActivity, hour,cardioFrequency,lattitude,longitude,altitude) values (?,?,?,?,?,?)";
+        var sql = "insert into User(name, first_name, birthdate, gender, height, weight, email, password) values (?,?,?,?,?,?,?,?)";
         db.run(sql, values, callback);
     };
 
