@@ -2,7 +2,7 @@ var user =  require('./user_DAO');
 // var db = require('./sport_track_db');
 
 
-var value = ["Tristan","Bourbigot","22-04-2003","Homme","180","80","tristanbourbigot@gmail.com","Test12345"]
+var value = ["Tristan","Bourbigot","22-04-2003","Homme","180","80","tristanbourbigot@gmail.com","Test12345"];
 
 
 
