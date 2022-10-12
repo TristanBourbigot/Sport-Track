@@ -4,14 +4,14 @@ var ActivityDAO = function(){
 
     this.insert = function(values, callback){
 
-        var sql = "insert into Activity(name, description, date, distance, duration, user_id) values (?,?,?,?,?,?)";
+        var sql = "insert into Activity(description, date, theUser) values (?,?,?)";
         db.run(sql, values, callback);
 
     }
 
     this.update = function(key, values, callback){
 
-        var sql = "UPDATE Activity SET name=?, description=?, date=?, distance=?, duration=?, user_id=? WHERE id=?";
+        var sql = "UPDATE Activity SET description=?, date=?, theUser=? WHERE idActivity=?";
         values.push(key);
         db.run(sql, values, callback);
 
@@ -19,21 +19,21 @@ var ActivityDAO = function(){
 
     this.delete = function(key, callback){
             
-        var sql = "DELETE FROM Activity WHERE id=?";
+        var sql = "DELETE FROM Activity WHERE idActivity=?";
         db.run(sql, key, callback);
 
     }
     
     this.findAll = function(callback){
             
-        var sql = "SELECT * FROM Activity ORDER BY id";
-        db.run(sql, callback);
+        var sql = "SELECT * FROM Activity ORDER BY idActivity";
+        db.all(sql, callback);
 
     }
 
     this.findByKey = function(key, callback){
 
-        var sql = "SELECT * FROM Activity WHERE id=?";
+        var sql = "SELECT * FROM Activity WHERE idActivity=?";
         db.all(sql, key, callback);
 
     };
