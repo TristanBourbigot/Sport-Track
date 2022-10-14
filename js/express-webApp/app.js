@@ -1,6 +1,3 @@
-var users = require('./routes/users');
-app.use('/users',users);
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -42,3 +39,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+var users = require('./routes/users');
+app.use('/users',users);
