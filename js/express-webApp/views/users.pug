@@ -6,17 +6,24 @@ html
         table(border='1')
             thead
                 tr
+                    th Id
                     th Nom
                     th Prénom
                     th Date de naissance
-                    th Taille
+                    th Genre
                     th Taille
                     th Poids
                     th Email
+                    th Mot de passe
             tbody
                 each val in data
                     tr
                     td= val.id
-                    td= val.description
-                    td= val.date_creation
-                    td= val.distance
+                    td= val.name
+                    td= val.first_name
+                    td= val.birthdate
+                    td= val.gender
+                    td= val.height
+                    td= val.weight
+                    td= val.email
+                    td= val.password
