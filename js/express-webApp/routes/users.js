@@ -10,4 +10,42 @@ router.get('/', function(req, res, next) {
         }
     });
 });
+
+router.post('/', function(req, res, next) {
+    var user = [
+        req.body.nom,
+        req.body.prenom,
+        req.body.dateN,
+        req.body.sexe,
+        req.body.taille,
+        req.body.poids,
+        req.body.email,
+        req.body.mdp
+    ];
+    console.log(user);
+    user_dao.findAll(function(err, rows) {
+        if(err != null){
+            console.log("ERROR= " +err);
+        }else {
+            var exist = false;
+            while(rows.next()){
+                if(rows.email == user.email){
+                    exist = true;
+                }
+            }
+            if(!exist){
+                user_dao.insert(user, function(err, rows) {
+                    if(err != null){
+                        console.log("ERROR= " +err);
+                    }else {
+                        // res.render('users', {data:rows});
+                    }
+                });
+            }else{
+                // res.render('users', {data:rows});
+            }
+        }
+    });
+});
+
 module.exports = router;

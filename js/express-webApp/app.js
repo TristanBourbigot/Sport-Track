@@ -42,8 +42,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-var users = require('./routes/users');
-app.use('/users',users);
 
-var connect = require('./routes/connect');
-app.use('/connect',connect);
