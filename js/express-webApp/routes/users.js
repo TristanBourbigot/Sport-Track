@@ -22,30 +22,34 @@ router.post('/', function(req, res, next) {
         req.body.email,
         req.body.mdp
     ];
+
     console.log(user);
     user_dao.findAll(function(err, rows) {
         if(err != null){
             console.log("ERROR= " +err);
         }else {
             var exist = false;
-            while(rows.next()){
-                if(rows.email == user.email){
+            for(var i = 0; i < rows.length; i++){
+                if(rows[i].email == user[6]){
                     exist = true;
                 }
             }
-            if(!exist){
+        }if(!exist){
                 user_dao.insert(user, function(err, rows) {
                     if(err != null){
                         console.log("ERROR= " +err);
                     }else {
-                        // res.render('users', {data:rows});
+                        res.render('usersCreate', {infoCreate:"Utilisateur créé"});
                     }
                 });
+
             }else{
-                // res.render('users', {data:rows});
+                res.render('usersCreate', {infoCreate:"Mail déjà utilisé"});
             }
-        }
-    });
+          
+        });
+   
 });
+
 
 module.exports = router;
