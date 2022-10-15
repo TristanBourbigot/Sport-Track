@@ -1,5 +1,5 @@
 var express = require("express");
-var user_dao = require("../sport-track-db/sport-track-db").user_dao;
+var user_dao = require("sport_track_db").user_dao;
 var router = express.Router();
 
 router.get("/", function (req, res) {
