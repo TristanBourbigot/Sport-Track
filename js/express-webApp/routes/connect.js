@@ -10,52 +10,25 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res, next) {
 
-  try {
+  var email = req.body.email;
+    var mdp = req.body.mdp;
 
-    const { mail, mdp } = req.body;
-    user_dao
-      .connect(mail, mdp)
-      .then((rows) => {
+    user_dao.findByEmailPassword(email, mdp, function (err, rows) {
 
-        if (rows && Object.values(rows)) {
+        nbRows = rows.length;
 
-          req.session.idUser = rows.idUser;
+        if (nbRows == 1) {
+
+          req.session.idUser = rows[0].idUser;
           res.redirect("/");
 
         } else {
 
-          res.render("error", {
-
-            message: "Cette email n'existe pas",
-            error: { status: 500, stack: "Veuillez vous créer un compte"},
-          
-            });
+          res.render(err);
         
         }
 
-      })
-
-      .catch((error) => {
-
-        res.render("error", {
-
-          message: "Une erreur est survenue",
-          error: { status: 500, stack: "Veuillez réessayer" },
-
-        });
-
-      });
-
-  } catch (error) {
-
-    res.render("error", {
-
-      message: "Une erreur est survenue",
-      error: { status: 500, stack: "Veuillez réessayer" },
-
     });
-
-  }
 
 });
 
