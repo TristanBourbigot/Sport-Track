@@ -31,6 +31,11 @@ var UserDAO = function(){
         var sql = "SELECT * FROM User WHERE email=?";
         db.all(sql, key, callback);
     };
+
+    this.findByEmailPassword = function(key, callback){
+        var sql = "SELECT * FROM User WHERE email=? AND password=?";
+        db.all(sql, key, callback);
+    }
 };
 var dao = new UserDAO();
 module.exports = dao;
