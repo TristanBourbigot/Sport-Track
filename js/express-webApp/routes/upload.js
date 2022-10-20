@@ -1,9 +1,11 @@
 var express = require('express');
-
+var fileUpload = require('express-fileupload');
 var router = express.Router();
 var user_dao = require('sport_track_db').user_dao;
 var activity_dao = require('sport_track_db').activity_dao;
 var activity_entry_dao = require('sport_track_db').activity_entry_dao;
+
+router.use(fileUpload());
 
 router.post('/', function(req, res, next) {
 
@@ -58,6 +60,7 @@ router.post('/', function(req, res, next) {
 
                     }
 
+
                 });
             }
         } catch (err) {
@@ -69,43 +72,6 @@ router.post('/', function(req, res, next) {
     }else{
 
         res.redirect('/connect');
-
-    }
-
-});
-
-router.get('/', function(req, res, next) {
-
-    if(req.session.email){
-
-        var mailUser = req.session.email;
-
-        user_dao.findByEmail(mailUser, function(err, rows) {
-
-            if (err != null) {
-        
-                console.log("ERROR= " + err);
-        
-            } else {   
-        
-                var idUser = rows[0].id;
-                
-                activity_dao.findByUser(idUser, function(err, rows) {
-
-                    if(err != null){
-
-                        console.log("ERROR= " +err);
-
-                    }else {
-
-                        res.render('upload', {data:rows});
-                    }
-
-                });
-        
-            }
-            
-        });
 
     }
 
