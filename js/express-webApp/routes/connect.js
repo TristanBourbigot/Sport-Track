@@ -19,13 +19,13 @@ router.post("/", function (req, res) {
       console.log("ERROR= " + err);
     }
     console.log("rows= " + rows[0].password);
-    if (rows.length == 0) {
+    if (rows.length == 0 && rows[0].password == mdp) {
       res.render("connectValid", { infoConnect: "Email incorrect" });
-    } else if(rows[0].password == mdp){
+    } else {
       req.session.email = email;
       console.log("email= " + req.session.email);
       res.render("connectValid", { infoConnect: "Connexion réussie" });
-    }else res.render("connectValid", { infoConnect: "Mot de passe incorrect" });
+    }
   });
 });
 
