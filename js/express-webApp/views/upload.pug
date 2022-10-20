@@ -1,0 +1,13 @@
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        h1 Ajouter un fichier d&apos;activit&eacute;s
+        form(action='/upload' method='post')
+            label(for='activites') Fichier activit&eacute;s:
+            br
+            input#activites(type='file' name='activites' accept='.json')
+            br
+            br
+            input(type='submit' value='valider')

@@ -38,6 +38,13 @@ var ActivityDAO = function(){
 
     };
 
+    this.findByUser = function(key, callback){
+
+        var sql = "SELECT * FROM Activity WHERE theUser=?";
+        db.all(sql, key, callback);
+
+    };
+
 }
 var dao = new ActivityDAO();
 module.exports = dao;
