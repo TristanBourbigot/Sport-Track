@@ -22,6 +22,9 @@ var ActivityEntryDAO  = function(){
         db.all(sql,[], callback);
     };
 
+    this.findAllAndJoinActivity = function(callback){
+        var sql = "SELECT idActivity, description, date, MIN(hour), (MAX(hour)-MIN(hour)) FROM Data, Activity WHERE Data.theActivity = Activity.idActivity";
+
     this.findByKey = function(key, callback){
         var sql = "SELECT * FROM Data WHERE idData=?";
         db.all(sql, key, callback);
