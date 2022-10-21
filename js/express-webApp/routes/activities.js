@@ -48,7 +48,6 @@ router.get("/", function (req, res) {
                                     i++;
                                 }
                                 distance.push({"distance": calculDistanceTrajet(tempDistance)});
-                                console.log("distance = " + calculDistanceTrajet(tempDistance));
                             }
                         }
                         

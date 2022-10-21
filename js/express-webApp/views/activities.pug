@@ -12,15 +12,26 @@ table(border='1')
                     th date
                     th heure de début
                     th durée
+                    th distance 
+                    th maximum Cardio 
+                    th minimum Cardio
+                    th moyenne Cardio
             tbody
                 each val in data
                     tr
                     td= val.idActivity
                     td= val.description
                     td= val.date
-                    td= val.heureDebut
-                    td= val.duree
-                    
+                    td= val.minHour
+                    td= val.temps 
+                each val in distance
+                    td= val.distance
+                each val in data
+                    td= val.maxCardio
+                    td= val.minCardio
+                    td= val.moyCardio
+                        
+
                     
                     
                     

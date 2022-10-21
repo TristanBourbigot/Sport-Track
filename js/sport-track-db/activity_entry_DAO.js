@@ -23,7 +23,7 @@ var ActivityEntryDAO  = function(){
     };
 
     this.findAllAndJoinActivity = function(callback){
-        var sql = "SELECT idActivity, description, date, MIN(hour), (MAX(hour)-MIN(hour)), MIN(cardioFrequency), MAX(cardioFrequency), AVG(cardioFrequency) FROM Data, Activity WHERE Data.theActivity = Activity.idActivity ORDER BY idActivity";
+        var sql = "SELECT idActivity, description, date, MIN(hour) minHour, (MAX(hour)-MIN(hour)) temps, MIN(cardioFrequency) minCardio, MAX(cardioFrequency) maxCardio, AVG(cardioFrequency) moyCardio FROM Data, Activity WHERE Data.theActivity = Activity.idActivity ORDER BY idActivity";
         db.all(sql,[], callback);
     }
 
