@@ -18,7 +18,6 @@ router.post("/", function (req, res) {
     if (err != null) {
       console.log("ERROR= " + err);
     }
-    console.log("rows= " + rows[0].password);
     if (rows.length == 0) {
       res.render("connectValid", { infoConnect: "Email incorrect" });
     } else if(rows[0].password == mdp){
