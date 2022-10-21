@@ -3,11 +3,11 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        h1 Ajouter un fichier d&apos;activit&eacute;s
-        form(action='/upload' method='post')
-            label(for='activites') Fichier activit&eacute;s:
-            br
-            input#activites(type='file' name='data' accept='.json')
-            br
-            br
-            input(type='submit' value='valider')
+        h1 Ajouter un fichier d activite
+        form(action="/upload" method="post" encType="multipart/form-data")
+            div
+                label(for="file") Fichier
+                input(type="file" name="data" accept='.json')
+            div
+                input(type="submit" value="Envoyer")
+            span #{error}

@@ -5,7 +5,11 @@ var user_dao = require('sport_track_db').user_dao;
 var activity_dao = require('sport_track_db').activity_dao;
 var activity_entry_dao = require('sport_track_db').activity_entry_dao;
 
-router.use(fileUpload());
+router.use(fileUpload({}));
+
+router.get('/', function(req, res, next) {
+    res.render('upload', { title: 'Upload' });
+});
 
 router.post('/', function(req, res, next) {
 
@@ -29,41 +33,22 @@ router.post('/', function(req, res, next) {
 
         try {
 
-            if(!req.files.data) {
+            if(!req.files) {
 
-                res.send({
+                console.log("No files were uploaded.");
 
-                    status: false,
-                    message: 'No file uploaded'
 
-                });
 
             } else {
 
                 //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
                 let activities = req.files.data;
-                
-                //Use the mv() method to place the file in the upload directory (i.e. "uploads")
-                activities.mv('./uploads/' + data.name);
-    
-                //send response
-                res.send({
 
-                    status: true,
-                    message: 'File is uploaded',
-
-                    data: {
-
-                        name: activities.name,
-                        mimetype: activities.mimetype,
-                        size: activities.size
-
-                    }
-
-
-                });
+                console.log(activities);
+            
             }
         } catch (err) {
+            console.log(err);
             res.status(500).send(err);
         }
 
